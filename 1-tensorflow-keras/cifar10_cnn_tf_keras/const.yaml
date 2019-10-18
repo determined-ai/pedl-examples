@@ -1,0 +1,28 @@
+description: cifar10_keras_const
+data:
+  url: https://s3-us-west-2.amazonaws.com/determined-ai-datasets/cifar10/cifar-10-python.tar.gz
+  acceleration:
+    use_multiprocessing: True
+    workers: 1
+checkpoint_storage:
+  type: s3
+  access_key: AKIAJGK24F32WWJ25AEA
+  secret_key: 08OM18juqj9p2ivz0kBkxsFVuY/yoC9A0fDHmSeA
+  bucket: determined-ai-examples
+hyperparameters:
+  learning_rate: 1e-4
+  learning_rate_decay: 1e-6
+  layer1_dropout: 0.25
+  layer2_dropout: 0.25
+  layer3_dropout: 0.5
+  batch_size: 32
+  width_shift_range: 0.1
+  height_shift_range: 0.1
+  horizontal_flip: True
+searcher:
+  name: single
+  metric: val_categorical_accuracy
+  max_steps: 50
+environment:
+  tensorflow: 1.14.0
+max_restarts: 0
