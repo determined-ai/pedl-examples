@@ -1,0 +1,17 @@
+description: cifar10_keras_const
+data:
+  url: https://s3-us-west-2.amazonaws.com/determined-ai-datasets/cifar10/cifar-10-python.tar.gz
+hyperparameters:
+  learning_rate: 1e-4
+  learning_rate_decay: 1e-6
+  layer1_dropout: 0.25
+  layer2_dropout: 0.25
+  layer3_dropout: 0.5
+  batch_size: 32
+  width_shift_range: 0.1
+  height_shift_range: 0.1
+  horizontal_flip: True
+searcher:
+  name: single
+  metric: val_categorical_accuracy
+  max_steps: 50
