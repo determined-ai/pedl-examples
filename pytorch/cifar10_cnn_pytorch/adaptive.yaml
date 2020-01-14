@@ -1,0 +1,31 @@
+description: cifar10_pytorch_adaptive
+data:
+  url: https://s3-us-west-2.amazonaws.com/determined-ai-datasets/cifar10/cifar-10-python.tar.gz
+hyperparameters:
+  learning_rate:
+    type: log
+    minval: -5.0
+    maxval: 1.0
+    base: 10.0
+  learning_rate_decay: 1e-6
+  layer1_dropout:
+    type: double
+    minval: 0.1
+    maxval: 0.6
+  layer2_dropout:
+    type: double
+    minval: 0.1
+    maxval: 0.6
+  layer3_dropout:
+    type: double
+    minval: 0.1
+    maxval: 0.6
+  batch_size:
+    type: int
+    minval: 16
+    maxval: 64
+searcher:
+  name: adaptive_simple
+  metric: validation_error
+  max_steps: 64
+  max_trials: 512
