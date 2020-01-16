@@ -14,10 +14,11 @@ from typing import Any, Dict, List, Tuple
 import pandas as pd
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import Activation, Dense
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.metrics import categorical_accuracy
-from tensorflow.keras.models import Sequential
+from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.utils import Sequence, get_file, to_categorical
 
@@ -32,11 +33,11 @@ class IrisTrial(TFKerasTrial):
     def session_config(self, hparams: Dict[str, Any]) -> tf.ConfigProto:
         return tf.ConfigProto()
 
-    def build_model(self, hparams: Dict[str, Any]) -> Sequential:
-        model = Sequential()
-        model.add(Dense(pedl.get_hyperparameter('layer1_dense_size'), input_dim=4))
-        model.add(Dense(NUM_CLASSES))
-        model.add(Activation("softmax"))
+    def build_model(self, hparams: Dict[str, Any]) -> Model:
+        inputs = Input(shape=(4,))
+        dense1 = Dense(pedl.get_hyperparameter('layer1_dense_size'))(inputs)
+        dense2 = Dense(NUM_CLASSES, activation="softmax")(dense1)
+        model = Model(inputs=inputs, outputs=dense2)
 
         model.compile(
             RMSprop(lr=pedl.get_hyperparameter('learning_rate'),
