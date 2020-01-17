@@ -13,13 +13,20 @@ from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.layers import Activation, Conv2D, Dense, Dropout, Flatten, MaxPooling2D
+from tensorflow.keras.layers import (
+    Activation,
+    Conv2D,
+    Dense,
+    Dropout,
+    Flatten,
+    MaxPooling2D,
+)
 from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.metrics import categorical_accuracy
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import RMSprop
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.utils import Sequence, get_file, to_categorical
+from tensorflow.keras.utils import get_file, Sequence, to_categorical
 from tensorflow.python.keras.datasets.cifar import load_batch
 
 import pedl
@@ -39,39 +46,47 @@ class CIFARTrial(TFKerasTrial):
 
     def build_model(self, hparams: Dict[str, Any]) -> Sequential:
         model = Sequential()
-        model.add(tf.keras.Input(shape=(IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS), name="image"))
+        model.add(
+            tf.keras.Input(shape=(IMAGE_SIZE, IMAGE_SIZE, NUM_CHANNELS), name="image")
+        )
         model.add(Conv2D(32, (3, 3), padding="same"))
         model.add(Activation("relu"))
         model.add(Conv2D(32, (3, 3)))
         model.add(Activation("relu"))
         model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(pedl.get_hyperparameter('layer1_dropout')))
+        model.add(Dropout(pedl.get_hyperparameter("layer1_dropout")))
 
         model.add(Conv2D(64, (3, 3), padding="same"))
         model.add(Activation("relu"))
         model.add(Conv2D(64, (3, 3)))
         model.add(Activation("relu"))
         model.add(MaxPooling2D(pool_size=(2, 2)))
-        model.add(Dropout(pedl.get_hyperparameter('layer2_dropout')))
+        model.add(Dropout(pedl.get_hyperparameter("layer2_dropout")))
 
         model.add(Flatten())
         model.add(Dense(512))
         model.add(Activation("relu"))
-        model.add(Dropout(pedl.get_hyperparameter('layer3_dropout')))
+        model.add(Dropout(pedl.get_hyperparameter("layer3_dropout")))
         model.add(Dense(NUM_CLASSES, name="label"))
         model.add(Activation("softmax"))
 
         model.compile(
-            RMSprop(lr=pedl.get_hyperparameter('learning_rate'),
-                    decay=pedl.get_hyperparameter('learning_rate_decay')),
+            RMSprop(
+                lr=pedl.get_hyperparameter("learning_rate"),
+                decay=pedl.get_hyperparameter("learning_rate_decay"),
+            ),
             categorical_crossentropy,
             [categorical_accuracy],
         )
 
         return model
 
-    def keras_callbacks(self, hparams: Dict[str, Any]) -> List[tf.keras.callbacks.Callback]:
-        return [TFKerasTensorBoard(update_freq="batch", profile_batch=0, histogram_freq=1)]
+    def keras_callbacks(
+        self, hparams: Dict[str, Any]
+    ) -> List[tf.keras.callbacks.Callback]:
+        return [
+            TFKerasTensorBoard(update_freq="batch", profile_batch=0, histogram_freq=1)
+        ]
 
 
 def make_data_loaders(
@@ -96,7 +111,6 @@ def make_data_loaders(
 
     download_dir = pedl.get_download_data_dir()
     (train_data, train_labels), (test_data, test_labels) = get_data(download_dir)
-
 
     # Setup training data loader.
     data_augmentation = {
@@ -138,7 +152,9 @@ def augment_data(
     return datagen.flow(data, labels, batch_size=batch_size, shuffle=shuffle)
 
 
-def get_data(data_path: str) -> Tuple[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray]]:
+def get_data(
+    data_path: str,
+) -> Tuple[Tuple[np.ndarray, np.ndarray], Tuple[np.ndarray, np.ndarray]]:
     num_train_samples = 50000
 
     train_data = np.empty((num_train_samples, 3, 32, 32), dtype="uint8")
@@ -172,5 +188,7 @@ def download_data(experiment_config: Dict[str, Any], hparams: Dict[str, Any]) ->
     dirname = "cifar-10-batches-py"
     # This is copied from keras.datasets.cifar10 and modified to support
     # a custom origin URL
-    path = get_file(dirname, origin=experiment_config["data"]["url"], untar=True)  # type: str
+    path = get_file(
+        dirname, origin=experiment_config["data"]["url"], untar=True
+    )  # type: str
     return path
