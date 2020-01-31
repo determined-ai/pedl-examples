@@ -1,0 +1,14 @@
+description: cifar10_tf_const
+hyperparameters:
+  learning_rate: 1e-4
+  learning_rate_decay: 1e-6
+  layer1_dropout: 0.25
+  layer2_dropout: 0.25
+  layer3_dropout: 0.5
+  batch_size: 32
+searcher:
+  name: single
+  metric: error
+  max_steps: 50
+  smaller_is_better: true
+min_validation_period: 10

@@ -1,0 +1,18 @@
+description: mnist-keras-single
+data:
+  base_url: https://s3-us-west-2.amazonaws.com/determined-ai-datasets/mnist/
+  training_data: train-images-idx3-ubyte.gz
+  training_labels: train-labels-idx1-ubyte.gz
+  validation_set_size: 10000
+hyperparameters:
+  batch_size: 64
+  dropout: 0.5
+  learning_rate: 1e-3
+  activation: "relu"
+  kernel_size: 3 
+searcher:
+  name: single
+  metric: accuracy
+  smaller_is_better: False
+  max_steps: 10
+min_validation_period: 5  

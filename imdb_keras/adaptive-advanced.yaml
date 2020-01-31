@@ -1,0 +1,26 @@
+description: imdb_keras_adaptive_advanced
+hyperparameters:
+  embedding_size:
+    type: int
+    minval: 32
+    maxval: 256
+  lstm_output_size: 128
+  dropout:
+    type: double
+    minval: 0.1
+    maxval: 0.4
+  recurrent_dropout: 0.2
+  activation:
+    type: categorical
+    vals: [sigmoid, hard_sigmoid, relu]
+  max_features: 20000
+  max_text_len: 80
+  batch_size: 32
+searcher:
+  name: adaptive
+  metric: validation_error
+  target_trial_steps: 4
+  step_budget: 24
+  mode: standard
+  max_rungs: 2
+  divisor: 4

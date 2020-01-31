@@ -1,0 +1,14 @@
+description: mnist-cnn-keras-entrypoint
+hyperparameters:
+  dropout: 0.25
+  kernel_size: 3
+  activation:
+    type: categorical
+    vals: ["relu", "sigmoid"]
+searcher:
+  name: single
+  metric: val_loss
+  max_steps: 1
+entrypoint:
+  script: mnist_cnn.py
+max_restarts: 0

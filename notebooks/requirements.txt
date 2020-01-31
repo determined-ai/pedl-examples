@@ -1,0 +1,4 @@
+# Requirements to run the example Jupyter notebooks.
+pandas==0.22.0
+plotnine==0.3.0
+jupyter==4.4.0

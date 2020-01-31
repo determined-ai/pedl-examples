@@ -1,0 +1,14 @@
+description: mnist_tf_const
+data:
+  validation_set_size: 10000
+hyperparameters:
+  base_learning_rate: 0.001
+  weight_cost: 0.0001
+  batch_size: 64
+  n_filters1: 40
+  n_filters2: 40
+searcher:
+  name: single
+  metric: error
+  max_steps: 5
+  smaller_is_better: true

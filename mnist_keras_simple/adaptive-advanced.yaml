@@ -1,0 +1,20 @@
+description: mnist_keras_simple_adaptive_advanced
+hyperparameters:
+  kernel_size: 3
+  dropout:
+    type: double
+    minval: 0.10
+    maxval: 0.40
+  activation:
+    type: categorical
+    vals: ["relu", "sigmoid"]
+searcher:
+  name: adaptive
+  metric: val_loss
+  target_trial_steps: 4
+  step_budget: 24
+  mode: standard
+  max_rungs: 2
+  divisor: 4
+entrypoint:
+  script: mnist_cnn.py

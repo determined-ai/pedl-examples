@@ -1,0 +1,33 @@
+description: mnist_tf_adaptive_advanced
+data:
+  validation_set_size: 10000
+hyperparameters:
+  base_learning_rate:
+    type: log
+    minval: -5.0
+    maxval: -3.0
+    base: 10
+  weight_cost:
+    type: log
+    minval: -6.0
+    maxval: -2.0
+    base: 10
+  batch_size:
+    type: const
+    val: 64
+  n_filters1:
+    type: int
+    minval: 32
+    maxval: 128
+  n_filters2:
+    type: int
+    minval: 32
+    maxval: 128
+searcher:
+  name: adaptive
+  metric: error
+  target_trial_steps: 32
+  step_budget: 64
+  mode: standard
+  max_rungs: 2
+  divisor: 4

@@ -1,0 +1,14 @@
+description: imdb_keras_const
+hyperparameters:
+  embedding_size: 75
+  lstm_output_size: 128
+  dropout: 0.214
+  recurrent_dropout: 0.2
+  activation: sigmoid
+  max_features: 20000
+  max_text_len: 80
+  batch_size: 32
+searcher:
+  name: single
+  metric: validation_error
+  max_steps: 4

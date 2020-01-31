@@ -1,0 +1,30 @@
+description: mnist_keras_adaptive
+data:
+  base_url: https://s3-us-west-2.amazonaws.com/determined-ai-datasets/mnist/
+  training_data: train-images-idx3-ubyte.gz
+  training_labels: train-labels-idx1-ubyte.gz
+  validation_set_size: 10000
+hyperparameters:
+  batch_size:
+    type: int
+    minval: 32
+    maxval: 64
+  dropout:
+    type: double
+    minval: 0.1
+    maxval: 0.5
+  learning_rate:
+    type: log
+    minval: -5.0
+    maxval: -1.0
+    base: 10
+  kernel_size: 3 
+  activation: 
+    type: categorical
+    vals: ["relu", "sigmoid"]
+searcher:
+  name: adaptive_simple 
+  smaller_is_better: False 
+  metric: accuracy 
+  max_trials: 16
+  max_steps: 64

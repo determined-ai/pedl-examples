@@ -1,0 +1,30 @@
+description: mnist_keras_functional_random
+data:
+  base_url: https://s3-us-west-2.amazonaws.com/determined-ai-datasets/mnist/
+  training_data: train-images-idx3-ubyte.gz
+  training_labels: train-labels-idx1-ubyte.gz
+  validation_set_size: 10000
+hyperparameters:
+  batch_size:
+    type: int
+    minval: 32
+    maxval: 64
+  dropout:
+    type: double
+    minval: 0.1
+    maxval: 0.5
+  learning_rate:
+    type: log
+    minval: -5.0
+    maxval: -1.0
+    base: 10
+  layer_size:
+    type: int
+    minval: 50
+    maxval: 200
+searcher:
+  name: random
+  metric: digit_accuracy
+  smaller_is_better: False
+  max_trials: 10
+  max_steps: 50

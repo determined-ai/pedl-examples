@@ -1,0 +1,32 @@
+description: mnist_tf_random
+data:
+  validation_set_size: 10000
+hyperparameters:
+  base_learning_rate:
+    type: log
+    minval: -5.0
+    maxval: -3.0
+    base: 10
+  weight_cost:
+    type: log
+    minval: -6.0
+    maxval: -2.0
+    base: 10
+  batch_size:
+    type: int
+    minval: 1
+    maxval: 256
+  n_filters1:
+    type: int
+    minval: 32
+    maxval: 128
+  n_filters2:
+    type: int
+    minval: 32
+    maxval: 128
+searcher:
+  metric: error
+  smaller_is_better: true
+  name: random
+  max_trials: 1
+  max_steps: 8
