@@ -1,0 +1,31 @@
+description: mnist_tf_grid
+data:
+  validation_set_size: 10000
+hyperparameters:
+  base_learning_rate:
+    type: double
+    minval: .0001
+    maxval: .0005
+    count: 1
+  weight_cost:
+    type: log
+    minval: -4.0
+    maxval: -3.0
+    base: 10
+    count: 2
+  batch_size:
+    type: const
+    val: 8
+  n_filters1:
+    type: categorical
+    vals: [32, 64]
+  n_filters2:
+    type: int
+    minval: 32
+    maxval: 64
+    count: 3
+searcher:
+  metric: error
+  smaller_is_better: true
+  name: grid
+  max_steps: 1
