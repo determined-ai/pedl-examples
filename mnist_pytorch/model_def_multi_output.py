@@ -9,17 +9,16 @@ The `MultiMNistTrial` class contains methods for calculating the losses,
 training metrics, and validation metrics.
 """
 
-from typing import Any, cast, Dict, Tuple
+from typing import Any, Dict, Tuple, cast
 
 import torch
 from torch import nn
 
 import pedl
+from layers import Flatten, Squeeze  # noqa: I100
 from pedl.frameworks.pytorch import PyTorchTrial, reset_parameters
 from pedl.frameworks.pytorch.data import TorchData
 from pedl.frameworks.pytorch.util import error_rate
-
-from layers import Flatten, Squeeze  # noqa: I100
 
 
 class MultiNet(nn.Module):

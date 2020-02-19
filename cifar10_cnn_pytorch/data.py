@@ -1,10 +1,9 @@
 from typing import Any, Dict, Tuple
 
 import torchvision
-from torchvision import transforms
-
 from pedl import get_download_data_dir
 from pedl.frameworks.pytorch.data import DataLoader
+from torchvision import transforms
 
 
 def download_data(experiment_config: Dict[str, Any], hparams: Dict[str, Any]) -> str:

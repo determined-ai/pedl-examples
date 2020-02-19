@@ -1,8 +1,9 @@
 from typing import Any, Dict, Tuple
 
 import tensorflow
-import tensorflow_datasets as tfds
 from packaging import version
+
+import tensorflow_datasets as tfds
 
 # Handle TensorFlow compatibility issues.
 if version.parse(tensorflow.__version__) >= version.parse("1.14.0"):

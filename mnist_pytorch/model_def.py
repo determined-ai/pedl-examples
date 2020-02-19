@@ -19,17 +19,15 @@ The output of `losses` is then fed directly into `validation_metrics`, which
 returns a dictionary mapping metric names to metric values.
 """
 
-from typing import Any, cast, Dict, Sequence, Tuple, Union
+from typing import Any, Dict, Sequence, Tuple, Union, cast
 
 import torch
 from torch import nn
 
 import pedl
+from layers import Flatten  # noqa: I100
 from pedl.frameworks.pytorch import PyTorchTrial, reset_parameters
 from pedl.frameworks.pytorch.util import error_rate
-
-from layers import Flatten  # noqa: I100
-
 
 TorchData = Union[Dict[str, torch.Tensor], Sequence[torch.Tensor], torch.Tensor]
 

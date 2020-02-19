@@ -8,7 +8,6 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.python.keras.datasets.cifar import load_batch
 from tensorflow.python.keras.utils.data_utils import Sequence
 
-
 NUM_CLASSES = 10
 
 

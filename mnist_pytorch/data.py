@@ -7,10 +7,10 @@ from typing import Any, Dict, List, Tuple
 import numpy as np
 import requests
 from torch.utils.data import Dataset
-from torchvision import datasets, transforms
 
 from pedl import get_download_data_dir
 from pedl.frameworks.pytorch.data import DataLoader
+from torchvision import datasets, transforms
 
 
 def get_dataset(data_dir: str, train: bool) -> Any:

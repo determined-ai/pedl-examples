@@ -1,11 +1,11 @@
 from typing import Any, Dict, List, Optional, Tuple
 
 import tensorflow as tf
-import tensorpack as tp
-from tensorpack.callbacks import TFEventWriter
 
+import tensorpack as tp
 from pedl import get_download_data_dir
 from pedl.frameworks.tensorflow.tensorpack_trial import TensorpackTrial
+from tensorpack.callbacks import TFEventWriter
 
 IMAGE_SIZE = 28
 

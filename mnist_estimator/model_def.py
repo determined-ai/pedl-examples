@@ -11,7 +11,6 @@ import pedl
 from pedl import get_download_data_dir
 from pedl.frameworks.tensorflow import EstimatorTrial, wrap_dataset, wrap_optimizer
 
-
 # Handle TensorFlow compatibility issues.
 if version.parse(tensorflow.__version__) >= version.parse("1.14.0"):
     import tensorflow.compat.v1 as tf

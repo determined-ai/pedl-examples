@@ -12,15 +12,15 @@ from typing import Any, Dict, List, Tuple
 
 import numpy as np
 import tensorflow as tf
-import tensorflow_datasets as tfds
-from cifar_utils import augment_data, get_data, NUM_CLASSES, preprocess_data, preprocess_labels
 from tensorflow.keras.layers import Activation, Conv2D, Dense, Dropout, Flatten, MaxPooling2D
 from tensorflow.keras.losses import categorical_crossentropy
 from tensorflow.keras.metrics import categorical_accuracy
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import RMSprop
-from tensorflow.keras.utils import get_file, Sequence
+from tensorflow.keras.utils import Sequence, get_file
 
+import tensorflow_datasets as tfds
+from cifar_utils import NUM_CLASSES, augment_data, get_data, preprocess_data, preprocess_labels
 from pedl import get_download_data_dir
 from pedl.frameworks import keras
 from pedl.frameworks.keras import TFKerasTensorBoard, TFKerasTrial, wrap_dataset

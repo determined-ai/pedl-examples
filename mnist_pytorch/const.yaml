@@ -2,6 +2,10 @@ description: mnist_pytorch_const
 data:
   url: https://s3-us-west-2.amazonaws.com/determined-ai-test-data/pytorch_mnist.tar.gz
   model_type: single_output
+entrypoints:
+  trial_class: model_def:MNistTrial
+  data_loaders_function: data:make_data_loaders
+  download_data_function: data:download_data
 hyperparameters:
   learning_rate: 0.001
   dropout: 0.5

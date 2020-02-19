@@ -5,7 +5,7 @@ https://github.com/fchollet/keras/blob/master/examples/cifar10_cnn.py
 - adaptive.yaml, accuracy comparable to Keras example after 50 steps
 """
 
-from typing import Any, cast, Dict, Sequence, Tuple, Union
+from typing import Any, Dict, Sequence, Tuple, Union, cast
 
 import torch
 from torch import nn
