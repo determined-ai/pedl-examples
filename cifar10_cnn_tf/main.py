@@ -13,7 +13,7 @@ from pedl.frameworks.keras import TFKerasTrial
 
 
 def preprocess_data(data: np.ndarray) -> np.ndarray:
-    return data.astype("float32") / 255
+    return data / 255.0
 
 
 def preprocess_labels(labels: np.ndarray) -> np.ndarray:
